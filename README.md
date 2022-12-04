@@ -27,7 +27,7 @@ Finally, start the script by running:
 
 The daily news report will be generated and sent to the specified Telegram chat.
 
-If you want it to run automatically, use the GitHub Actions workflow in the .github/workflows folder. You will need to provide the same environment variables in the GitHub repository secrets.
+If you want it to run automatically, use the GitHub Actions workflow in the `.github/workflows` folder. You will need to provide the same environment variables in the GitHub repository secrets.
 
 # License
 This project is licensed under the MIT License - see the LICENSE file for details.
