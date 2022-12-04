@@ -5,7 +5,7 @@ import { TextToSpeechClient } from "@google-cloud/text-to-speech";
 import TelegramBot from "node-telegram-bot-api";
 import rssParser from "rss-parser";
 import { Configuration, OpenAIApi } from "openai";
-import { readFileSync, rmSync, writeFileSync } from "fs";
+import { rmSync, writeFileSync } from "fs";
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const GOOGLE_PROJECT_ID = process.env.GOOGLE_PROJECT_ID;
@@ -29,7 +29,6 @@ const client = new TextToSpeechClient({
   projectId: GOOGLE_PROJECT_ID,
   keyFile: keyFilename,
 });
-
 
 // Telegram Bot
 const bot = new TelegramBot(TELEGRAM_API_KEY);
