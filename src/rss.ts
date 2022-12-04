@@ -1,5 +1,5 @@
-import { loadConfig } from "./config";
-import rssParser from "rss-parser";
+import { loadConfig } from './config';
+import rssParser from 'rss-parser';
 
 const { RSS_FEEDS } = loadConfig();
 
@@ -12,7 +12,7 @@ const getLast24HoursItems = async (feedUrl: string) => {
 
   // Filter the items that were added in the last 24 hours
   const items = feed.items.filter((item) => {
-    const date = new Date(item.pubDate ?? "");
+    const date = new Date(item.pubDate ?? '');
     return now.getTime() - date.getTime() < 24 * 60 * 60 * 1000;
   });
 
@@ -23,9 +23,7 @@ const getLast24HoursItems = async (feedUrl: string) => {
 export const getAllFeedsCombined = async () => {
   const items = await Promise.all(RSS_FEEDS.map(getLast24HoursItems));
 
-  const combinedText = items
-    .flat()
-    .reduce((acc, item) => `${acc}${item.contentSnippet}\n---\n`, "");
+  const combinedText = items.flat().reduce((acc, item) => `${acc}${item.contentSnippet}\n---\n`, '');
 
   return combinedText;
 };

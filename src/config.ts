@@ -1,4 +1,4 @@
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
@@ -10,16 +10,10 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const SPEAKING_RATE = 1.2;
 
 // Be careful with adding more feeds, I only tried techmeme.com
-const RSS_FEEDS = ["https://www.techmeme.com/feed.xml"];
+const RSS_FEEDS = ['https://www.techmeme.com/feed.xml'];
 
-if (
-  !GOOGLE_API_KEY ||
-  !GOOGLE_PROJECT_ID ||
-  !TELEGRAM_API_KEY ||
-  !TELEGRAM_CHAT_ID ||
-  !OPENAI_API_KEY
-) {
-  throw new Error("Missing API Keys");
+if (!GOOGLE_API_KEY || !GOOGLE_PROJECT_ID || !TELEGRAM_API_KEY || !TELEGRAM_CHAT_ID || !OPENAI_API_KEY) {
+  throw new Error('Missing API Keys');
 }
 
 export const loadConfig = () => {
@@ -30,6 +24,6 @@ export const loadConfig = () => {
     TELEGRAM_CHAT_ID,
     OPENAI_API_KEY,
     RSS_FEEDS,
-    SPEAKING_RATE,
+    SPEAKING_RATE
   };
 };
