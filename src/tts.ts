@@ -23,7 +23,7 @@ export const synthesize = async (text: string) => {
   // TODO: split text into chunks
 
   const [response] = await client.synthesizeSpeech({
-    input: { text: text },
+    input: { text },
     voice: {
       languageCode: "en-US",
       ssmlGender: "FEMALE",

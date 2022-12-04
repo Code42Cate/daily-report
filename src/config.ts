@@ -9,7 +9,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 const SPEAKING_RATE = 1.2;
 
-// Be careful with adding more feeds, I only techmeme.com
+// Be careful with adding more feeds, I only tried techmeme.com
 const RSS_FEEDS = ["https://www.techmeme.com/feed.xml"];
 
 if (
