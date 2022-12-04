@@ -11,18 +11,17 @@ const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const GOOGLE_PROJECT_ID = process.env.GOOGLE_PROJECT_ID;
 const TELEGRAM_API_KEY = process.env.TELEGRAM_API_KEY;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 if (
   !GOOGLE_API_KEY ||
   !GOOGLE_PROJECT_ID ||
   !TELEGRAM_API_KEY ||
-  !TELEGRAM_CHAT_ID
+  !TELEGRAM_CHAT_ID ||
+  !OPENAI_API_KEY
 ) {
-  throw new Error("GOOGLE_API_KEY is not set");
+  throw new Error("Missing API Keys");
 }
-
-console.log(GOOGLE_API_KEY);
-console.log(GOOGLE_PROJECT_ID);
 
 const keyFilename = "pem.json";
 writeFileSync(keyFilename, GOOGLE_API_KEY);
@@ -37,7 +36,7 @@ const client = new TextToSpeechClient({
 const bot = new TelegramBot(TELEGRAM_API_KEY);
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
