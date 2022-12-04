@@ -5,6 +5,7 @@ import { TextToSpeechClient } from "@google-cloud/text-to-speech";
 import TelegramBot from "node-telegram-bot-api";
 import rssParser from "rss-parser";
 import { Configuration, OpenAIApi } from "openai";
+import { rmSync, writeFileSync } from "fs";
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const GOOGLE_PROJECT_ID = process.env.GOOGLE_PROJECT_ID;
@@ -20,10 +21,13 @@ if (
   throw new Error("GOOGLE_API_KEY is not set");
 }
 
+const keyFilename = "pem.json";
+writeFileSync(keyFilename, GOOGLE_API_KEY);
+
 // Google API Client
 const client = new TextToSpeechClient({
   projectId: GOOGLE_PROJECT_ID,
-  key: GOOGLE_API_KEY,
+  keyFilename: keyFilename,
 });
 
 // Telegram Bot
@@ -117,6 +121,8 @@ const main = async () => {
   const summary = await summarize(combinedText);
 
   const audio = await synthesize(summary);
+
+  rmSync(keyFilename);
 
   if (audio) {
     await sendAudio(audio, summary);
