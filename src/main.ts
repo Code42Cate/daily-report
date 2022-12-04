@@ -27,10 +27,9 @@ writeFileSync(keyFilename, GOOGLE_API_KEY);
 // Google API Client
 const client = new TextToSpeechClient({
   projectId: GOOGLE_PROJECT_ID,
-  keyFilename: keyFilename,
+  keyFile: keyFilename,
 });
 
-console.log(readFileSync(keyFilename));
 
 // Telegram Bot
 const bot = new TelegramBot(TELEGRAM_API_KEY);
