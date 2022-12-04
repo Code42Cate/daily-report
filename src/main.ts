@@ -23,7 +23,6 @@ if (
 // Google API Client
 const client = new TextToSpeechClient({
   projectId: GOOGLE_PROJECT_ID,
-  keyFile: "privat-370615-d9fc6a823eb9.json",
   key: GOOGLE_API_KEY,
 });
 

@@ -15,4 +15,10 @@ jobs:
           node-version: 12.x
       - run: npm install
       - run: npm run build
+
       - run: npm run start
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
+          TELEGRAM_API_KEY: ${{ secrets.TELEGRAM_API_KEY }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
