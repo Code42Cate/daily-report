@@ -1,4 +1,5 @@
 [![Daily Build and Start](https://github.com/Code42Cate/daily-report/actions/workflows/daily-run.yml/badge.svg)](https://github.com/Code42Cate/daily-report/actions/workflows/daily-run.yml)
+[![Lint](https://github.com/Code42Cate/daily-report/actions/workflows/lint.yml/badge.svg)](https://github.com/Code42Cate/daily-report/actions/workflows/lint.yml)
 # Daily News Report Bot
 
 This project is a daily news report that is generated using Google's Text-to-Speech API and sent to a Telegram chat as an audio file. The news articles are sourced from a list of RSS feeds and summarized using OpenAI's GPT-3 model.
