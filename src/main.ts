@@ -21,6 +21,9 @@ if (
   throw new Error("GOOGLE_API_KEY is not set");
 }
 
+console.log(GOOGLE_API_KEY);
+console.log(GOOGLE_PROJECT_ID);
+
 const keyFilename = "pem.json";
 writeFileSync(keyFilename, GOOGLE_API_KEY);
 
