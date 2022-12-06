@@ -12,7 +12,7 @@ export const sendAudio = async (audio: Buffer, text: string) => {
     audio,
     {
       title: dailyReportTitle,
-      caption: text
+      caption: text.slice(0, 1000)
     },
     {
       filename: dailyReportTitle,
