@@ -1,25 +1,36 @@
-name: Daily Report
+name: تحديث المدونة اليومي
 
 on:
   schedule:
-    - cron: "0 6 * * *"
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 jobs:
-  build-and-start:
+  update-blog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: استنساخ المستودع
+        uses: actions/checkout@v4
         with:
-          node-version: 18.x
-      - run: npm install
-      - run: npm run build
+          token: ${{ secrets.PAT_TOKEN }}
 
-      - run: npm run start
+      - name: إعداد Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: تثبيت المكتبات
+        run: pip install requests google-generativeai
+
+      - name: تشغيل سكريبت تحديث المدونة
+        run: python weaver_complete.py
         env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-          GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
-          TELEGRAM_API_KEY: ${{ secrets.TELEGRAM_API_KEY }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: رفع التغييرات إلى GitHub
+        run: |
+          git config user.name "Weaver Bot"
+          git config user.email "bot@aidreamweaver.store"
+          git add articles/ *.html
+          git commit -m "تحديث المدونة" || exit 0
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
